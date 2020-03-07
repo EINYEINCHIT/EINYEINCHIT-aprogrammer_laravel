@@ -8,9 +8,7 @@
 		</div>
 		<ul>
 		    @foreach($data as $value)
-			    <li><a href="/receipe/{{ $value->id }}">Name - {{ $value->name }}</a></li>
-			    <li>Ingredients - {{ $value->ingredients }}</li>
-			    <li>Category - {{ $value->category }}</li>
+			    <li><a href="/receipe/{{ $value->id }}">{{ $value->name }}</a></li>
 		    	<hr>
 		    @endforeach
 		</ul>

@@ -6,7 +6,7 @@
 		<ul>
 			<li>Name - {{ $receipe->name }}</li>
 		    <li>Ingredients - {{ $receipe->ingredients }}</li>
-		    <li>Category - {{ $receipe->category }}</li>
+		    <li>Category - {{ $receipe->categories->name }}</li>
 		</ul>
 		
 		<a href="/receipe/{{ $receipe->id }}/edit"><button class="btn btn-success">EDIT</button></a>
