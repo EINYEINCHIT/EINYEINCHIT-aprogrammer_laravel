@@ -32,7 +32,7 @@
 					@endforeach
 				</select>
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">SUBMIT</button>
 		</form>
 	</div>
 @endsection
