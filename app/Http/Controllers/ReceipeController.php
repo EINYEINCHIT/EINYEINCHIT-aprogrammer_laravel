@@ -35,15 +35,22 @@ class ReceipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $receipe = new Receipe();
+        $validatedData = request()->validate([
+            'name' => 'required',
+            'ingredients' => 'required',
+            'category' => 'required',
+        ]);
+        
+        Receipe::create($validatedData); // need to defined fillable in model
 
-        $receipe->name = $request->name;
-        $receipe->ingredients = $request->ingredients;
-        $receipe->category = $request->category;
+        // Receipe::create([ // want to use guarded instead of fillable in model
+        //     'name' => request()->name,
+        //     'ingredients' => request()->ingredients,
+        //     'category' => request()->category
+        // ]);
 
-        $receipe->save();
         return redirect("receipe");
     }
 
@@ -64,9 +71,8 @@ class ReceipeController extends Controller
      * @param  \App\Receipe  $receipe
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Receipe $receipe)
     {
-        $receipe = Receipe::find($id);
         return view('edit', compact('receipe'));
     }
 
@@ -77,15 +83,16 @@ class ReceipeController extends Controller
      * @param  \App\Receipe  $receipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receipe $receipe)
+    public function update(Receipe $receipe)
     {
-        $receipe = Receipe::find($receipe->id);
+        $validatedData = request()->validate([
+            'name' => 'required',
+            'ingredients' => 'required',
+            'category' => 'required',
+        ]);
 
-        $receipe->name = $request->name;
-        $receipe->ingredients = $request->ingredients;
-        $receipe->category = $request->category;
+        $receipe->update($validatedData); // need to defined fillable in model
 
-        $receipe->save();
         return redirect("receipe");
     }
 
