@@ -56,9 +56,8 @@ class ReceipeController extends Controller
             'category' => 'required',
         ]);
 
-        Receipe::create($validatedData + ['author_id' => auth()->id()]); // need to defined fillable in model
+        $receipe = Receipe::create($validatedData + ['author_id' => auth()->id()]); // need to defined fillable in model
 
-        flash('Receipe has created successfully!');
         return redirect("receipe");
     }
 
@@ -108,7 +107,6 @@ class ReceipeController extends Controller
 
         $receipe->update($validatedData); // need to defined fillable in model
 
-        flash('Receipe has updated!');
         return redirect("receipe");
     }
 
@@ -124,7 +122,6 @@ class ReceipeController extends Controller
 
         $receipe->delete();
 
-        flash('Receipe has deleted!');
         return redirect("receipe");
     }
 }

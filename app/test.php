@@ -4,10 +4,10 @@ namespace App;
 
 class test {
 
-    // public $something;
+    public $something;
 
-    // public function __construct($something) {
-    //     $this->something = $something;
-    // }
+    public function __construct($something) {
+        $this->something = $something;
+    }
 
 }
