@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\User;
 use App\Receipe;
-use App\test;
+use App\Category;
 use Illuminate\Http\Request;
+use App\Events\ReceipeCreatedEvent;
+use App\Notifications\ReceipeStoredNotification;
 
 class ReceipeController extends Controller
 {
@@ -23,11 +25,13 @@ class ReceipeController extends Controller
      */
     public function index()
     {
-        $data = Receipe::where('author_id', auth()->id())->get();
+        // $user = User::find(2);
+        // $user->notify(new ReceipeStoredNotification());
+        // echo("sent notification");
+        // exit();
 
-        // retrieve current login user info -> auth()->user()
-        // check if login or not => auth()->check()
-        
+        $data = Receipe::where('author_id', auth()->id())->get();      
+
         return view('home', compact('data'));
     }
 
@@ -39,6 +43,7 @@ class ReceipeController extends Controller
     public function create()
     {        
         $category = Category::all();
+
         return view('create', compact('category'));
     }
 
@@ -85,6 +90,7 @@ class ReceipeController extends Controller
         $this->authorize('view', $receipe);
 
         $category = Category::all();
+        
         return view('edit', compact('receipe', 'category'));
     }
 
