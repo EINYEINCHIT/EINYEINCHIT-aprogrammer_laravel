@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Receipe;
+use App\test;
 use Illuminate\Http\Request;
 
 class ReceipeController extends Controller
@@ -54,15 +55,10 @@ class ReceipeController extends Controller
             'ingredients' => 'required',
             'category' => 'required',
         ]);
-        
+
         Receipe::create($validatedData + ['author_id' => auth()->id()]); // need to defined fillable in model
 
-        // Receipe::create([ // want to use guarded instead of fillable in model
-        //     'name' => request()->name,
-        //     'ingredients' => request()->ingredients,
-        //     'category' => request()->category
-        // ]);
-
+        flash('Receipe has created successfully!');
         return redirect("receipe");
     }
 
@@ -112,6 +108,7 @@ class ReceipeController extends Controller
 
         $receipe->update($validatedData); // need to defined fillable in model
 
+        flash('Receipe has updated!');
         return redirect("receipe");
     }
 
@@ -126,6 +123,8 @@ class ReceipeController extends Controller
         $this->authorize('view', $receipe);
 
         $receipe->delete();
+
+        flash('Receipe has deleted!');
         return redirect("receipe");
     }
 }

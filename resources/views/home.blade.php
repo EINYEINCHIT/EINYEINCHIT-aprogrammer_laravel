@@ -15,6 +15,10 @@
                     @endif
                     <div class="container">
                         <h1>Home Page</h1>
+                        
+                        @component('alert')
+                        @endcomponent
+ 
                         <div>
                             <a href="receipe/create"><button class="btn btn-success">CREATE</button></a>
                         </div>
