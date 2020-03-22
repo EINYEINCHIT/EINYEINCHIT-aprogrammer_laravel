@@ -30,9 +30,9 @@ class ReceipeController extends Controller
         // echo("sent notification");
         // exit();
 
-        $data = Receipe::where('author_id', auth()->id())->get();      
+        $data = Receipe::where('author_id', auth()->id())->paginate(5);      
 
-        return view('home', compact('data'));
+        return view('receipe.list', compact('data'));
     }
 
     /**
@@ -44,7 +44,7 @@ class ReceipeController extends Controller
     {        
         $category = Category::all();
 
-        return view('create', compact('category'));
+        return view('receipe.create', compact('category'));
     }
 
     /**
@@ -59,6 +59,7 @@ class ReceipeController extends Controller
             'name' => 'required',
             'ingredients' => 'required',
             'category' => 'required',
+            'description' => 'required',
         ]);
 
         $receipe = Receipe::create($validatedData + ['author_id' => auth()->id()]); // need to defined fillable in model
@@ -76,7 +77,7 @@ class ReceipeController extends Controller
     {
         $this->authorize('view', $receipe);
 
-        return view('show', compact('receipe'));
+        return view('receipe.show', compact('receipe'));
     }
 
     /**
@@ -91,7 +92,7 @@ class ReceipeController extends Controller
 
         $category = Category::all();
         
-        return view('edit', compact('receipe', 'category'));
+        return view('receipe.edit', compact('receipe', 'category'));
     }
 
     /**

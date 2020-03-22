@@ -1,18 +1,19 @@
-@extends('layout')
+@extends('layouts.adminLayout')
 
 @section('content')
-	<div class="container">
-		<h1>Add New Receipe</h1>
+	<div class="container my-3">
+		
+		<div class="row">
+			<div class="col"><h2>Create Receipe</h2></div>
+		</div>
 
-		@if ($errors->any())
-			<div class="alert alert-danger">
-				<ul>
-					@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-					@endforeach
-				</ul>
+		{{-- error alert --}}
+		<div class="row">
+			<div class="col">
+				@component('alert')
+				@endcomponent
 			</div>
-		@endif
+		</div>
 
 		<form method="POST" action="/receipe">
 			{{ csrf_field() }}
@@ -32,7 +33,12 @@
 					@endforeach
 				</select>
 			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea rows="5" name="description" class="form-control" id="description" required>{{ old('description') }}</textarea>
+			</div>
 			<button type="submit" class="btn btn-primary">SUBMIT</button>
 		</form>
+
 	</div>
 @endsection

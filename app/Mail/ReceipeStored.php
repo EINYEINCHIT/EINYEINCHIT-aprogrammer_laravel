@@ -29,6 +29,6 @@ class ReceipeStored extends Mailable
      */
     public function build()
     {
-        return $this->markdown('receipe');
+        return $this->markdown('mailtemplate.receipe');
     }
 }

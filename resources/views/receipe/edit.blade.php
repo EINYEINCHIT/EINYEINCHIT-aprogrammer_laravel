@@ -1,18 +1,19 @@
-@extends('layout')
+@extends('layouts.adminLayout')
 
 @section('content')
-	<div class="container">
-		<h1>Edit Receipe</h1>
+	<div class="container my-3">
+		
+		<div class="row">
+			<div class="col"><h2>Edit Receipe</h2></div>
+		</div>
 
-		@if ($errors->any())
-			<div class="alert alert-danger">
-				<ul>
-					@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-					@endforeach
-				</ul>
+		{{-- error alert --}}
+		<div class="row">
+			<div class="col">
+				@component('alert')
+				@endcomponent
 			</div>
-		@endif
+		</div>
 
 		<form method="POST" action="/receipe/{{ $receipe->id }}">
 			{{ method_field("PATCH") }}
@@ -34,7 +35,12 @@
 					@endforeach
 				</select>
 			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea rows="5" name="description" class="form-control" id="description" required>{{ $receipe->description }}</textarea>
+			</div>
 			<button type="submit" class="btn btn-primary">SUBMIT</button>
 		</form>
+
 	</div>
 @endsection

@@ -11,7 +11,7 @@ class Receipe extends Model
 {
     protected $table = 'receipe';
 
-    protected $fillable = ['name', 'ingredients', 'category', 'author_id'];
+    protected $fillable = ['name', 'ingredients', 'category', 'description', 'author_id'];
 
     // protected $guarded = [];
 
@@ -31,13 +31,13 @@ class Receipe extends Model
 
         static::updated( function($receipe) {
 
-            flash('Receipe has updated!');
+            flash('Receipe has been successfully updated!');
             
         });
 
         static::deleted( function($receipe) {
 
-            flash('Receipe has deleted!');
+            flash('Receipe was deleted!');
             
         });
     }
