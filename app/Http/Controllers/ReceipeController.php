@@ -41,7 +41,7 @@ class ReceipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
+    {
         $category = Category::all();
 
         return view('receipe.create', compact('category'));
@@ -59,7 +59,7 @@ class ReceipeController extends Controller
             'name' => 'required',
             'ingredients' => 'required',
             'category' => 'required',
-            'description' => 'required',
+            'description' => 'required'
         ]);
 
         $receipe = Receipe::create($validatedData + ['author_id' => auth()->id()]); // need to defined fillable in model
@@ -110,6 +110,7 @@ class ReceipeController extends Controller
             'name' => 'required',
             'ingredients' => 'required',
             'category' => 'required',
+            'description' => 'required'
         ]);
 
         $receipe->update($validatedData); // need to defined fillable in model

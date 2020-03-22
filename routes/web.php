@@ -18,5 +18,6 @@ Route::get('/detail/{id}', 'PublicController@show');
 
 Route::get('/admin', 'AdminController@index');
 Route::resource('/receipe', 'ReceipeController');
+Route::resource('/category', 'CategoryController');
 
 Auth::routes();

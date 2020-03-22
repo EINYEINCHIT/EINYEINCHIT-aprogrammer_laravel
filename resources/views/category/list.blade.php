@@ -4,8 +4,8 @@
 <div class="container my-3">
 
     <div class="row">
-        <div class="col"><h2>Receipe List</h2></div>
-        <div class="col-auto"><a href="receipe/create"><button class="btn btn-success">CREATE</button></a></div>
+        <div class="col"><h2>Category List</h2></div>
+        <div class="col-auto"><a href="category/create"><button class="btn btn-success">CREATE</button></a></div>
     </div>
 
     {{-- success alert --}}
@@ -21,15 +21,13 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Ingredients</th>
-                <th scope="col">Category</th>
             </tr>
         </thead>
         <tbody>
             @foreach($data as $value)
                 <tr>
                     <th>
-                        <a href="/receipe/{{ $value->id }}/edit"><button class="btn btn-primary ">EDIT</button></a>
+                        <a href="/category/{{ $value->id }}/edit"><button class="btn btn-primary ">EDIT</button></a>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">DELETE</button>
                         <!-- Modal -->
                         <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -45,7 +43,7 @@
                                         Are you sure you want to delete it?
                                     </div>
                                     <div class="modal-footer">
-                                        <form method="POST" action="/receipe/{{ $value->id }}" class="d-inline-block">
+                                        <form method="POST" action="/category/{{ $value->id }}" class="d-inline-block">
                                             {{ method_field("DELETE") }}
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-primary">YES</button>
@@ -56,9 +54,7 @@
                             </div>
                         </div>
                     </th>
-                    <td><a href="/receipe/{{ $value->id }}">{{ $value->name }}</a></td>
-                    <td>{{ $value->ingredients }}</td>
-                    <td>{{ $value->categories->name }}</td>
+                    <td><a href="/category/{{ $value->id }}">{{ $value->name }}</a></td>
                 </tr>
             @endforeach    
         </tbody>
